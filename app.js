@@ -14,13 +14,13 @@ var methodOverride = require("method-override");
 
 var commentRoutes = require("./routes/comments"), 
     campgroundRoutes = require("./routes/campgrounds"), 
-    indexRoutes = require("./routes/index")
+    indexRoutes = require("./routes/index");
 
 // added middleware
 app.use(require("express-session")({
     secret: 'banana',
    resave: false,
-   saveUninitialized: true
+   saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -45,7 +45,7 @@ app.use(express.static(__dirname + "/public"));
 // SCHEMA setup
 app.use(methodOverride("_method"));
 
-app.use(indexRoutes);
+app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
