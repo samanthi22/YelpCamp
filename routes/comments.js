@@ -66,6 +66,20 @@ router.put("/:comment_id", function(req, res) {
     
 });
 
+//campground destroy route: /campgrounds/:id
+// comment destroy route: /campgrounds/:id/comments/:comment_id
+
+router.delete("/:comment_id", function(req, res) {
+    // find by id and remove
+    Comment.findByIdAndRemove(req.params.comment_id, function(err) {
+       if(err){
+           res.redirect("back");
+       } else {
+           res.redirect("/campgrounds/" + req.params.id);
+       }
+    });
+});
+
 
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated) {
