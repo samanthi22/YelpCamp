@@ -29,12 +29,6 @@ router.get("/login", function(req, res) {
    res.render("login"); 
 });
 
-
-router.get("/logout", function(req, res) {
-   req.logout();
-   res.redirect("/campgrounds");
-});
-
 router.post("/login", passport.authenticate("local", 
     { 
         successRedirect: "/campgrounds", 
@@ -43,11 +37,11 @@ router.post("/login", passport.authenticate("local",
     }), function(req, res) {
 });
 
-// login route
 router.get("/logout", function(req, res) {
-    req.logout()
-    res.redirect("/campgrounds");
+   req.logout();
+   res.redirect("/campgrounds");
 });
+
 
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated) {

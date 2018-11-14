@@ -3,8 +3,9 @@ var router = express.Router({mergeParams: true});
 
 var Campground = require("../models/campground");
 var Comment = require("../models/comment");
+var middleware = require("../middleware");
 
-router.get("/new", isLoggedIn, function(req, res){
+router.get("/new", middleware.isLoggedIn, function(req, res){
     Campground.findById(req.params.id, function(err, campground) {
        if (err) {
            console.log(err);
@@ -15,7 +16,7 @@ router.get("/new", isLoggedIn, function(req, res){
     
 });
 
-router.post("/", isLoggedIn, function(req, res) {
+router.post("/", middleware.isLoggedIn, function(req, res) {
    Campground.findById(req.params.id, function(err, campground) {
      if(err) {
          console.log(err); 
@@ -43,7 +44,7 @@ router.post("/", isLoggedIn, function(req, res) {
 });
 
 // comments edit route
-router.get("/:comment_id/edit", function(req, res) {
+router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, res) {
    Comment.findById(req.params.comment_id, function(err, foundComment) {
        if(err){
            res.redirect("back");
@@ -80,12 +81,5 @@ router.delete("/:comment_id", function(req, res) {
     });
 });
 
-
-function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated) {
-        return next();
-    }
-    res.redirect("/login");
-}
 
 module.exports = router;
