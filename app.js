@@ -9,6 +9,7 @@ var Campground = require("./models/campground");
 var Comment = require("./models/comment");
 var User = require("./models/user");
 var seedDB = require("./seeds");
+var flash = require("connect-flash");
 
 // var passportLocalMongoose = require("passport-local-mongoose");
 // added passport-local
@@ -22,12 +23,13 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(flash());
 
 app.use(methodOverride("_method"));
 
 // added middleware
 app.use(require("express-session")({
-    secret: 'banana',
+   secret: 'banana',
    resave: false,
    saveUninitialized: false
 }));
@@ -41,6 +43,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next) {
     //res.locals.currentUser = req.user;
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 
