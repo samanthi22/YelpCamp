@@ -8,15 +8,15 @@ Galvanize Web Immersive Program - 6 months - YelpCamp project.
 
 >> git log
 
-commit <hash>
+commit hash
 
-copy <hash>
+copy hash
 
 >>q
 
 (to quit)
 
->> git checkout <hash>
+>> git checkout hash
 
 git checkout (copy and paste hash)
 
