@@ -21,3 +21,15 @@ copy hash
 git checkout (copy and paste hash)
 
 >> git status
+
+heroku commands:
+
+> on AWS: nvm i v8 
+
+> heroku run ls
+
+> heroku run ls node_modules
+
+> heroku run npm install mongoose --save
+
+
