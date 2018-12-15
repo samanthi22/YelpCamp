@@ -18,9 +18,14 @@ var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"), 
     indexRoutes = require("./routes/index");
     
+// use two different databases - one for production mLab and one for development
 
-// mongoose.connect("mongodb://localhost/yelp_camp");
-mongoose.connect("mongodb://samanthi22:password1234@ds153705.mlab.com:53705/samanthi22_yelpcamp");
+//console.log(process.env.DATABASEURL);
+//mongoose.connect("mongodb://localhost/yelp_camp");
+// mongoose.connect("mongodb://samanthi22:password1234@ds153705.mlab.com:53705/samanthi22_yelpcamp");
+//process.env.databaseURL //  environment variable
+mongoose.connect(process.env.DATABASEURL);
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
