@@ -21,9 +21,7 @@ var commentRoutes = require("./routes/comments"),
 // use two different databases - one for production mLab and one for development
 
 //console.log(process.env.DATABASEURL);
-//mongoose.connect("mongodb://localhost/yelp_camp");
-// mongoose.connect("mongodb://samanthi22:password1234@ds153705.mlab.com:53705/samanthi22_yelpcamp");
-//process.env.databaseURL //  environment variable
+//process.env.DATABASEURL //  environment variable
 mongoose.connect(process.env.DATABASEURL);
 
 app.use(bodyParser.urlencoded({extended: true}));

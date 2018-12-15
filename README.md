@@ -32,4 +32,14 @@ heroku commands:
 
 > heroku run npm install mongoose --save
 
+(deployed to heroku - YelpCamp link)[https://hidden-beyond-89516.herokuapp.com/]
+
+login into heroku - config vars - key -value pair
+
+command line (node.js docs) - heroku config:set MY_CUSTOM_VALUE= - heroku config:set DATABASEURL=foobar
+
+
+
+
+
 
